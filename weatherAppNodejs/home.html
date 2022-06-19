@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id="weathercon">
+            <i class="fa-solid fa-sun" style="color:  #FCE570"></i>
+        </div>
+        <div class="info">
+            <h2 class="location"><i class="fa-solid fa-street-view"></i> {%location%}, {%country%}</h2>
+            <p id="date">WEB | OCT 23 |10:43</p>
+            <h1 class="temp">[%tempval%]</h1>
+            <h3 class="tempmin_max">Min {%tempmin%} | Max {%tempmax%}</h3>
+        </div>
+    </div>
+
+    <script>
+        const curDate = document.getElementById("date");
+        let weathercon = document.getElementById("weathercon");
+
+        const tempStatus = "Clouds";
+        const getCurrentDay = () => {
+            let currentTime = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "SUN";
+            weekday[1] = "MON";
+            weekday[2] = "TUE";
+            weekday[3] = "WED";
+            weekday[4] = "THU";
+            weekday[5] = "FRI";
+            weekday[6] = "SAT";
+            return weekday[currentTime.getDay()];
+        }
+
+        const getCurrentTime = () => {
+            var month_name = new Array(11);
+            month_name[0] = "JAN";
+            month_name[1] = "FEB";
+            month_name[2] = "MAR";
+            month_name[3] = "APR";
+            month_name[4] = "MAY";
+            month_name[5] = "JUN";
+            month_name[6] = "JUL";
+            month_name[7] = "AUG";
+            month_name[8] = "SEP";
+            month_name[9] = "OCT";
+            month_name[10] = "NOV";
+            month_name[11] = "DEC";
+            var now = new Date();
+            var month = month_name[now.getMonth()];
+            var day = now.getDate();
+            console.log(month + "/" + day);
+
+            let hours = now.getHours();
+            let mins = now.getMinutes();
+
+            let periods = "AM";
+            if (hours > 11) {
+                periods = "PM";
+                if (hours > 12) hours -= 12;
+            }
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+
+            return `${month} ${day} | ${hours} ${mins} ${periods}`
+        }
+
+        curDate.innerHTML = getCurrentDay() + "|" + getCurrentTime();
+    </script>
+</body>
+
+</html>
