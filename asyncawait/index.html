@@ -1,0 +1,61 @@
+<script>
+
+    //task
+    // api student
+
+    // 1. 2s rollnumber
+    // 2. 2s name and age
+
+    //executor
+    //promise produce
+
+    const pobj1 = new Promise((resolve, reject)=> {
+        setTimeout(()=> {
+            let roll_no = [1,2,3,4,5];
+            resolve(roll_no);
+            //reject("Error while communication");
+        }, 2000);
+    });
+
+    const getBiodata = (indexdata)=> {
+        return new Promise((resolve, reject)=> {
+            setTimeout((indexdata)=> {
+                let biodata = {
+                    name: 'ajay',
+                    age: 29
+                }
+                resolve(`My name is ${biodata.name} and i am ${biodata.age} year old.`);
+            }, 2000, indexdata)
+        });
+    }
+
+    //promise consume/receiving value
+    // pobj1.then((rollno)=> {
+    //     console.log(rollno);
+    //     return getBiodata(rollno[1]);
+    // }).then((kuchbhi)=> {
+    //     console.log(kuchbhi);
+    // }).catch((erro)=> {
+    //     console.log(error);
+    // })
+
+
+    async function getData(){
+        const rollnodata = await pobj1;
+        console.log(rollnodata);
+
+        const biodata = await getBiodata(rollnodata[1]);
+        console.log(biodata);
+    }
+
+    getData();
+
+
+    async function myData(){
+        let myPromise = new Promise((resolve, reject)=> {
+            resolve('This is a basic example of promise, async and await');
+        })
+        console.log(await myPromise);
+    }
+    myData();
+</script>
