@@ -6,6 +6,7 @@ const Register = require("./models/registers");
 const { json } = require("express");
 const hbs = require("hbs");
 const port = process.env.PORT || 3000;
+const bcrypt = require("bcryptjs");
 // const { json } = require("express");
 // const 
 const static_path = path.join(__dirname, "../public");
@@ -31,65 +32,76 @@ app.get("/register", (req, res) => {
     res.render("register")
 })
 
-app.post("/register", async (req, res) => {
-    try {
-        const password = req.body.password;
-        const cpassword = req.body.confirmpassword;
-        if (password === cpassword) {
-            const registerEmployee = new Register({
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                email: req.body.email,
-                gender: req.body.gender,
-                phone: req.body.phone,
-                age: req.body.age,
-                password: password,
-                confirmpassword: cpassword
-            })
+// app.post("/register", async (req, res) => {
+//     try {
+//         const password = req.body.password;
+//         const cpassword = req.body.confirmpassword;
+//         if (password === cpassword) {
+//             const registerEmployee = new Register({
+//                 firstname: req.body.firstname,
+//                 lastname: req.body.lastname,
+//                 email: req.body.email,
+//                 gender: req.body.gender,
+//                 phone: req.body.phone,
+//                 age: req.body.age,
+//                 password: password,
+//                 confirmpassword: cpassword
+//             })
 
-            //concept of middleware
-            const registered = await registerEmployee.save();
-            console.log(registered);
-            res.status(201).render("/");
-        } else {
-            res.send("paswsword arenot matching")
-        }
-    } catch (error) {
+//             //concept of middleware
+//             const registered = await registerEmployee.save();
+//             console.log(registered);
+//             res.status(201).render("index");
+//         } else {
+//             res.send("invalid login detail")
+//         }
+//     } catch (error) {
 
-    }
-})
+//     }
+// })
 
-app.get("/login", (req, res) => {
-    res.render("login")
-})
+// app.get("/login", (req, res) => {
+//     res.render("login")
+// })
 
-app.post("/login", async (req, res) => {
-    try {
-        const email = req.body.email;
-        const password = req.body.password;
-        const useremail = await Register.findOne({ email: email });
+// app.post("/login", async (req, res) => {
+//     try {
+//         const email = req.body.email;
+//         const password = req.body.password;
+//         const useremail = await Register.findOne({ email: email });
 
-        if (useremail.password === password) {
-            res.status(201).render("index");
-        } else {
-            res.send("password are not matching");
-        }
-    } catch (error) {
-        res.status(400).send("Invalid Email");
-    }
-})
+//         const isMatch = bcrypt.compare(password, useremail.password)
+
+//         if (isMatch) {
+//             res.status(201).render("index");
+//         } else {
+//             res.send("password are not matching");
+//         }
+//     } catch (error) {
+//         res.status(400).send("Invalid Email");
+//     }
+// })
 
 
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 
-const securePassword = async (password) => {
-    const passwordHash = await bcrypt.hash(password, 10);
-    console.log(passwordHash);
-    const passwordMatch = await bcrypt.compare(password, passwordHash);
-    console.log(passwordMatch);
+// const securePassword = async (password) => {
+//     const passwordHash = await bcrypt.hash(password, 10);
+//     // console.log(passwordHash);
+//     const passwordMatch = await bcrypt.compare(password, passwordHash);
+//     // console.log(passwordMatch);
+// }
+
+// securePassword("thapa@123");
+
+const jwt = require("jsonwebtoken");
+
+const createToken = async() => {
+    const token = await jwt.sign({_id: "62d36b0bb7b8e04f52198706" }, "mynameisajayawalthatisyoutuberegis");
+    console.log(token.header);
 }
 
-securePassword("thapa@123");
+createToken();
 
 app.listen(port, () => {
     console.log(`server is running at port no ${port}`);
