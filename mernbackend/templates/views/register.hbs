@@ -1,65 +1,59 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <html lang="en">
 
-<head>
-    {{>header}}
-</head>
+    <head>
+        {{>header}}
+    </head>
 
-<body>
-    {{>navbar}}
-    <div class="container-fluid">
-        <form class="row" action="/register" method="POST">
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="First Name *" name="firstname">
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Last Name *" name="lastname">
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Your Email *" name="email">
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="d-flex form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender1">
-                        <label class="form-check-label" for="gender1">
-                            Male
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender2" checked>
-                        <label class="form-check-label" for="gender2">
-                            Female
-                        </label>
-                    </div>
+    <body>
+        {{>navbar}}
+        <div class="container-fluid">
+            <form class="row" action="/register" method="POST">
+                <div class="col-md-6 mb-4">
+                    <input type="text" class="form-control" placeholder="First Name *" name="firstname">
                 </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Your Phone *" name="phone" >
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Enter Your Age *" name="age">
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Password *" name="password">
-            </div>
-            <div class="col-md-6 mb-4">
-                <input type="text" class="form-control" placeholder="Confirm Password *" name="confirmpassword">
-            </div>
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-success" value="Submit" />
-            </div>
-        </form>
-    </div>
+                <div class="col-md-6 mb-4">
+                    <input type="text" class="form-control" placeholder="Last Name *" name="lastname">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="text" class="form-control" placeholder="Your Email *" name="email">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="radio" name="gender" value="male">
+                      <small>Male</small> 
+
+                    <input  type="radio" name="gender" value="female" checked>
+                        <small>Female</small>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="number" class="form-control" placeholder="Your Phone *" name="phone">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="number" class="form-control" placeholder="Enter Your Age *" name="age">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="password" class="form-control" placeholder="Password *" name="password">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <input type="password" class="form-control" placeholder="Confirm Password *" name="confirmpassword">
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-success" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </body>
+
+    </html>
 </body>
 
-</html>
-</body>
 </html>
